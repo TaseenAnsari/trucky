@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+    <div class="container">
+        <a class="navbar-brand text-white d-flex" [routerLink]="['']">
+            Trucky
+        </a>
+        <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+            *ngIf="isAdmin">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarNav">
+            <ul class="navbar-nav" *ngIf="isAdmin">
+                <li class="nav-item">
+                    <label class="nav-item" *ngIf="isAdmin">Hi ! &#9995; {{userEmail}}</label>
+                </li>
+            </ul>
+        </div>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <app-post></app-post>
+            </li>
+        </ul>
+    </div>
+</nav>

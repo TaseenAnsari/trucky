@@ -1,0 +1,60 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Post Add</h4>
+        <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <select class="form-select" aria-label="Default select example" formControlName="type">
+                <option selected>Select Catogory</option>
+                <option value="comercial">Comercial</option>
+                <option value="car">Car</option>
+                <option value="bike">Bike</option>
+            </select>
+            <select class="form-select" aria-label="Default select example" formControlName="brand">
+                <option selected>Select Brand</option>
+                <option value="Tata">Tata</option>
+                <option value="Ashok">Ahsok</option>
+                <option value="Other">other</option>
+            </select>
+            <div class="mb-3">
+                <label class="form-label">Model</label>
+                <input type="text" class="form-control" formControlName="model">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Year</label>
+                <input type="text" class="form-control" formControlName="year">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Km driven</label>
+                <input type="text" class="form-control" formControlName="kmDriven">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input type="text" class="form-control" formControlName="price">
+            </div>
+            <div class="mb-3">
+                <div class="container">
+                    <input type="file" class="form-control"  #files multiple>
+                    <div class="container p-1" *ngFor="let item of fileuploaded;index as i">
+                        <label class="text-danger p-1" #filename> <span class="text-dark">File:</span> {{item?.filename}}</label>
+                        <label class="text-danger p-1"><span class="text-dark">Size:</span>:{{item?.filesize}}</label>
+                        <button class="btn btn-danger btn-sm" (click)="remove(i)">Remove</button>
+                    </div>
+                    <button class="btn btn-success m-1" type="button" (click)="send(files)" >upload</button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    formControlName="desc"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+            </div>
+        </div>
+    </form>
+</ng-template>
+<button type="submit" class="btn btn-outline-warning" (click)="open(content)">Post Adds</button>

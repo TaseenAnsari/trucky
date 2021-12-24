@@ -1,0 +1,31 @@
+<app-header></app-header>
+<section>
+    <div class="container">
+        <div>
+            <h3>{{status | titlecase}}</h3>
+        </div>
+        <div class="d-inline-block col" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+                (focus)="myDrop.open()">Sort</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                <button ngbDropdownItem (click)="sort('year')">Year</button>
+                <button ngbDropdownItem (click)="sort('price')">Price</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 my-3 d-flex justify-content-center" *ngFor="let res of resource;index as i">
+                <div class="card " style="width: 18rem;" (click)="showVehicle(resource[(resource.length-1)-i]._id)">
+                    <img [src]="'http://localhost:3000/api/'+resource[(resource.length-1)-i].photo[0]" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">{{resource[(resource.length-1)-i].brand}} {{resource[(resource.length-1)-i].model}}</h3>
+                        <p class="card-text">{{resource[(resource.length-1)-i].year}}</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{resource[(resource.length-1)-i].price | currency:'INR'}}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

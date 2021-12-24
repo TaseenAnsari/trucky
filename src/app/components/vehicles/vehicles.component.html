@@ -1,0 +1,50 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg">
+            <div class="container-fluid p-1 row">
+                <h2 class="col">{{resource?.[0].brand | uppercase}} {{resource?.[0].model}}</h2>
+                <h2 class="col-md-4">{{resource?.[0].price | currency:'INR'}}</h2>
+            </div>
+            <div class="card">
+                <div id="slider">
+                    <img [src]="'http://localhost:3000/api/'+currentImage" class="card-img-top col" alt="...">
+                </div>
+                <div class="card-body row">
+                    <button class="btn btn-outline-secondary col" (click)="changeBack()">
+                        < </button>
+                            <div class="col d-flex justify-content-center">
+                                <div class="pagination" *ngFor="let item of resource?.[0].photo;index as i">
+                                    <span class="px-2" *ngIf="currentImage===item">&#9679;</span>
+                                    <span class="px-2" *ngIf="currentImage!==item">&#9675;</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-secondary col" (click)="changeFor()">></button>
+                </div>
+                <div class="card-body row" id="">
+                    <p class="card-text col-6 text-secondary">Type : <span
+                            class="text-primary">{{resource?.[0].type}}</span></p>
+                    <p class="card-text col-6 text-secondary">Model : <span
+                            class="text-primary">{{resource?.[0].model}}</span></p>
+                    <p class="card-text col-6 text-secondary">KM : <span
+                            class="text-primary">{{resource?.[0].kmDriven}}</span></p>
+                    <p class="card-text col-6 text-secondary">year : <span
+                            class="text-primary">{{resource?.[0].year}}</span></p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-secondary">Description</p>
+                    <div class="container" id="desc">
+                        <p class="card-text">{{resource?.[0].description}}</p>
+
+                    </div>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <button class="btn btn-danger" (click)="removePost(id)">delete</button>
+        </div>
+        <div class="col-lg-3 d-flex justify-content-center">
+            <label>For Adds</label>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+<header class="container">
+    <div class=" py-2 row">
+        <div class="d-inline-block col" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Catagory</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                <button ngbDropdownItem (click)="changeMenu(menu)" #menu value="Commercial">Commercial</button>
+                <button ngbDropdownItem>Car</button>
+                <button ngbDropdownItem>Bike</button>
+            </div>
+        </div>
+        <input class="form-control col" type="search" placeholder="Search Vehicles..." aria-label="Search">
+    </div>
+    <div class="carousel">
+        <div id="carouselExampleSlidesOnly" class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img [src]="'./assets/slideShow/slide.jpg'" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
