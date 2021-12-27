@@ -3,22 +3,31 @@
         <a class="navbar-brand text-white d-flex" [routerLink]="['']">
             Trucky
         </a>
+        
         <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
             *ngIf="isAdmin">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarNav">
-            <ul class="navbar-nav" *ngIf="isAdmin">
-                <li class="nav-item">
-                    <label class="nav-item" *ngIf="isAdmin">Hi ! &#9995; {{userEmail}}</label>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" *ngIf="isAdmin">
+                    <label class="text-white p-2" *ngIf="isAdmin">Hi ! &#9995; {{userEmail}}</label>
+                    <button class="btn btn-warning btn-sm mx-2" (click)="logout()">Logout</button>
+                </li>
+                <li class="nav-item" *ngIf="isAdmin">
+                    <app-post></app-post>
                 </li>
             </ul>
         </div>
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto" *ngIf="!isAdmin">
             <li class="nav-item">
-                <app-post></app-post>
+                <a class="btn btn-outline-light btn mx-2" *ngIf="!isAdmin" href="tel:+4733378901">
+                    <i class="bi bi-telephone-fill"></i> 
+                    <label>+91-999-999-9999</label>
+                </a>
             </li>
         </ul>
+        
     </div>
 </nav>

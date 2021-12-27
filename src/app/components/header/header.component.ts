@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilityService } from '../../utility.service';
 
 @Component({
   selector: 'app-header',
@@ -6,13 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  catagory:any[]=[
+    'comercial',
+    'car',
+    'bike'
+  ]
+  constructor(private util:UtilityService) { }
 
   ngOnInit(): void {
   }
-  changeMenu(value:any){
-    console.log(value.value)
-    console.log("changed")
+  changeMenu(event:any){
+    this.util.changeCat.next(event)
+    this.util.refresh.next(true)
+  }
+  search(event:any){
+    this.util.search.next(event.target.value);
   }
 }

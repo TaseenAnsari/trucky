@@ -1,10 +1,4 @@
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Post Add</h4>
-        <button type="button" class="btn btn-outline-danger btn-sm" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<div class="container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="modal-body">
             <label class="form-label">Select Catagory</label>
@@ -14,9 +8,6 @@
                 <option value="car">Car</option>
                 <option value="bike">Bike</option>
             </select>
-            <div>
-                <small class="text-danger" *ngIf="form?.get('type')?.errors?.['required'] && form.touched">Catogory Required</small>
-            </div>
             <label class="form-label">Select Brand</label>
             <select class="form-select" aria-label="Default select example" formControlName="brand">
                 <option selected>Select Brand</option>
@@ -24,19 +15,13 @@
                 <option value="Ashok">Ahsok</option>
                 <option value="Other">other</option>
             </select>
-            <div>
-                <small class="text-danger" *ngIf="form?.get('brand')?.errors?.['required'] && form.touched">Brand Required</small>
-            </div>
             <div class="mb-3">
                 <label class="form-label">Model</label>
                 <input type="text" class="form-control" formControlName="model">
-                <small class="text-danger" *ngIf="form?.get('model')?.errors?.['required'] && form.touched">Model Required</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Year</label>
                 <input type="text" class="form-control" formControlName="year">
-                <small class="text-danger" *ngIf="form?.get('year')?.errors?.['required'] && form.touched">Year Required</small>
-                <small class="text-danger" *ngIf="form?.get('year')?.errors?.['max'] || form?.get('year')?.errors?.['min'] && form.touched">Year must between 2000 to 2022</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Km driven</label>
@@ -44,29 +29,29 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Price</label>
-                <input type="text" class="form-control" formControlName="price" (keydown)="type()">
+                <input type="text" class="form-control" formControlName="price">
             </div>
             <div class="mb-3">
                 <div class="container">
                     <input type="file" class="form-control"  #files multiple formControlName="file">
                     <div class="row mx-2">
                         <div class="p-1 col-1" id="image"  *ngFor="let item of fileuploaded;index as i">
-                            <img [src]="'http://localhost:3000/api/'+item?.filename" alt="">
+                            <img [src]="'http://localhost:3000/api/'+item" alt="">
                             <button class="btn " (click)="remove(i)"><i class="bi bi-slash-circle-fill text-danger"></i>></button>
                         </div>
                     </div>
-                    <button class="btn btn-success m-1" type="button" (click)="send(files)" >upload</button>
+                    <button class="btn btn-success m-1" type="button" (click)="send(files)">upload</button>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label" >Description</label>
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                     formControlName="desc"></textarea>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')"  [disabled]="!form.valid">Save</button>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-outline-success mx-2">Save</button>
+                <button type="button" class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
             </div>
         </div>
-    </form>
-</ng-template>
-<button type="submit" class="btn btn-outline-warning" (click)="open(content)">Post Adds</button>
+    </form>    
+</div>

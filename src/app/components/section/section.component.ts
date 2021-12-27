@@ -9,32 +9,44 @@ import { UtilityService } from '../../utility.service';
   styleUrls: ['./section.component.css']
 })
 export class SectionComponent implements OnInit {
-  resource:any;
-  currentImage:string=''
-  sortResource:any
-  status:string= 'Comercial Vehicle'
-  constructor(private http:HttpService,private router:Router,util:UtilityService) {
+  resource: any;
+  currentImage: string = ''
+  sortResource: any[] = []
+  cat: string = 'Comercial Vehicle'
+  search:string = ''
+  searchedResource:any;
+  constructor(private http: HttpService, private router: Router, private util: UtilityService) {
     util.refresh.subscribe(res => {
-      if(res){
+      if (res) {
         this.ngOnInit()
-      } 
+      }
     })
-    }
+    
+  }
+  
   ngOnInit(): void {
-    this.http.getDate('http://localhost:3000/api/vehicles')
-    .subscribe((res:any)=> {
-      this.resource = res
-    })
+    this.util.changeCat.subscribe( res => this.cat = res)
+    this.http.getDate('http://localhost:3000/api/vehicles',{type:this.cat})
+      .subscribe((res: any) => {
+        console.log(res)
+        this.resource = res
+      })
   }
 
-  showVehicle(id:string){
-    this.router.navigate(['/vehicle',id])
+  showVehicle(id: string) {
+    this.router.navigate(['/vehicle', id])
   }
-  sort(value:string){
-      if(value==='year'){
-        for(let item of this.resource){
-          
-        }
-      }
+  sort(value: string) {
+    if (value === 'price') {
+      return this.http.getDate('http://localhost:3000/api/vehicles', { sort: 'price',type:this.cat })
+        .subscribe((res: any) => this.resource = res.reverse())
+    }
+    if (value === 'year') {
+      return this.http.getDate('http://localhost:3000/api/vehicles', { sort: 'year',type:this.cat })
+        .subscribe((res: any) => {
+          this.resource = res.reverse()
+        })
+    }
+    return
   }
 }

@@ -1,14 +1,15 @@
-<header class="container">
-    <div class=" py-2 row">
-        <div class="d-inline-block col" ngbDropdown #myDrop="ngbDropdown">
-            <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Catagory</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownManual">
-                <button ngbDropdownItem (click)="changeMenu(menu)" #menu value="Commercial">Commercial</button>
-                <button ngbDropdownItem>Car</button>
-                <button ngbDropdownItem>Bike</button>
+<header>
+    <div class="container row">
+        <div class="d-inline-block col  my-1" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+                (focus)="myDrop.open()">Catagory</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu>
+                <input type="button" ngbDropdownItem *ngFor="let item of catagory" (click)="changeMenu(item)"
+                    value="{{item | titlecase}}">
             </div>
         </div>
-        <input class="form-control col" type="search" placeholder="Search Vehicles..." aria-label="Search">
+        <input class="form-control col-md  my-1" type="search" placeholder="Search Vehicles..." aria-label="Search"
+            (keyup)="search($event)">
     </div>
     <div class="carousel">
         <div id="carouselExampleSlidesOnly" class="carousel">
@@ -19,5 +20,4 @@
             </div>
         </div>
     </div>
-
 </header>

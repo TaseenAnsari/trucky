@@ -2,12 +2,12 @@
 <div class="container">
     <div class="row">
         <div class="col-lg">
-            <div class="container-fluid p-1 row">
-                <h2 class="col">{{resource?.[0].brand | uppercase}} {{resource?.[0].model}}</h2>
-                <h2 class="col-md-4">{{resource?.[0].price | currency:'INR'}}</h2>
+            <div class="container-fluid p-1 d-sm-flex">
+                <h2 class="text-muted">{{resource?.[0].brand | uppercase}} {{resource?.[0].model}}</h2>
+                <h2 class="ms-auto">{{resource?.[0].price | currency:'INR'}}</h2>
             </div>
             <div class="card">
-                <div id="slider">
+                <div class="image">
                     <img [src]="'http://localhost:3000/api/'+currentImage" class="card-img-top col" alt="...">
                 </div>
                 <div class="card-body row">
@@ -26,9 +26,9 @@
                             class="text-primary">{{resource?.[0].type}}</span></p>
                     <p class="card-text col-6 text-secondary">Model : <span
                             class="text-primary">{{resource?.[0].model}}</span></p>
-                    <p class="card-text col-6 text-secondary">KM : <span
-                            class="text-primary">{{resource?.[0].kmDriven}}</span></p>
-                    <p class="card-text col-6 text-secondary">year : <span
+                    <p class="card-text col-6 text-secondary">KM : <span class="text-primary">{{resource?.[0].kmDriven |
+                            number}}</span></p>
+                    <p class="card-text col-6 text-secondary">Year : <span
                             class="text-primary">{{resource?.[0].year}}</span></p>
                 </div>
                 <div class="card-body">
@@ -40,7 +40,10 @@
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
-            <button class="btn btn-danger" (click)="removePost(id)">delete</button>
+            <div class="container d-flex p-2">
+                <button class="btn btn-danger m-2" (click)="removePost(id)" *ngIf="isAdmin">Delete Post</button>
+                <button class="btn btn-info m-2" (click)="updatePost(id)" *ngIf="isAdmin">Edit Post</button>
+            </div>
         </div>
         <div class="col-lg-3 d-flex justify-content-center">
             <label>For Adds</label>

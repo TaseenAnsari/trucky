@@ -1,8 +1,8 @@
 <app-header></app-header>
-<section>
-    <div class="container">
-        <div>
-            <h3>{{status | titlecase}}</h3>
+<section class="m-3">
+    <div class="container  bg-light" >
+        <div class="my-2">
+            <h2 class="badge rounded-pill bg-info">{{cat | titlecase}}</h2>
         </div>
         <div class="d-inline-block col" ngbDropdown #myDrop="ngbDropdown">
             <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
@@ -15,14 +15,16 @@
         <div class="row">
             <div class="col-md-3 my-3 d-flex justify-content-center" *ngFor="let res of resource;index as i">
                 <div class="card " style="width: 18rem;" (click)="showVehicle(resource[(resource.length-1)-i]._id)">
-                    <img [src]="'http://localhost:3000/api/'+resource[(resource.length-1)-i].photo[0]" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h3 class="card-title">{{resource[(resource.length-1)-i].brand}} {{resource[(resource.length-1)-i].model}}</h3>
-                        <p class="card-text">{{resource[(resource.length-1)-i].year}}</p>
+                    <div class="image">
+                        <img [src]="'http://localhost:3000/api/'+resource[(resource.length-1)-i].photo[0]" class="card-img-top" alt="..." id="img">
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{resource[(resource.length-1)-i].price | currency:'INR'}}</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h3 class="card-title">{{resource[(resource.length-1)-i].brand}} {{resource[(resource.length-1)-i].model}}</h3>
+                        <p class="card-text">{{resource[(resource.length-1)-i].kmDriven | number}} Km - {{resource[(resource.length-1)-i].year}}</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text h5">{{resource[(resource.length-1)-i].price | currency:'INR'}}</p>
+                        <p class="card-text"><small class="text-muted">Lastest Update</small></p>
                     </div>
                 </div>
             </div>

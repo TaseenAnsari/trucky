@@ -13,17 +13,14 @@ export class HttpService {
   }
 
   verifyToken(){
-    return this.http.get(this.url+'/verify-token',{ headers:{
+    return this.http.get('http://localhost:3000/api/auth/verify-token',{ headers:{
       'x-auth-token' : String(localStorage.getItem('token'))
     }})
   }
 
 
   getDate(url:string,querry?:any){
-    return this.http.get(url,{
-      headers:{
-        "x-auth-token":"token"
-    }})
+    return this.http.get(url,{params:querry})
   }
 
   upload(upload:any){
@@ -40,10 +37,17 @@ export class HttpService {
     return this.http.post(this.url,resource)
   }
 
-  deleteDate(id:string){
-    return this.http.delete(id,{
+  deleteDate(url:string){
+    return this.http.delete(url,{
       headers:{
-        "x-auth-token":"token"
+        "x-auth-token":String(localStorage.getItem('token'))
     }})
   }
+  updateDate(url:string,resource:any){
+    return this.http.put(url,resource,{
+      headers:{
+        "x-auth-token":String(localStorage.getItem('token'))
+    }
+  })
+}
 }

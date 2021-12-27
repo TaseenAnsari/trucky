@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../http.service';
+import { UtilityService } from '../../utility.service';
 
 @Component({
   selector: 'app-vehicles',
@@ -12,12 +13,15 @@ export class VehiclesComponent implements OnInit {
   id:any
   couter:number = 0
   currentImage:string=""
-  constructor(private http:HttpService,private route:ActivatedRoute ,private router:Router) { 
-
+  isAdmin:any;
+  constructor(private http:HttpService,private route:ActivatedRoute ,private router:Router,private util:UtilityService) { 
+    this.util.isAdmin.subscribe(res => this.isAdmin = res)
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(res => this.id = res )
+    this.route.paramMap.subscribe(res => {
+      this.id = res
+    } )
     this.http.getDate('http://localhost:3000/api/vehicles/'+this.id.params.id)
     .subscribe((res:any)=> {this.resource = res
     this.currentImage = res[0].photo[0]
@@ -39,6 +43,9 @@ export class VehiclesComponent implements OnInit {
     if(!confirm('are you sure')) return
     this.http.deleteDate('http://localhost:3000/api/vehicles/'+this.id.params.id)
     .subscribe(res=> this.router.navigate(['/']))
+  }
+  updatePost(id:string){
+    this.router.navigate(['/vehicle/edit/'+this.id.params.id])
   }
 
 }

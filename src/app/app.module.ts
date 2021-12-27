@@ -13,6 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerComponent } from './components/customer/customer.component';
 import { PostComponent } from './components/post/post.component';
+import { UpdatepostComponent } from './components/updatepost/updatepost.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { PostComponent } from './components/post/post.component';
     LoginComponent,
     CustomerComponent,
     PostComponent,
+    UpdatepostComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,6 @@ export class CustomerComponent implements OnInit {
   ngOnInit(): void {
     if(localStorage.getItem('user')) return
     setTimeout(()=>{
-      console.log(this.content)
       this.modalService.open(this.content);
     },2000)
     

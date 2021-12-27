@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     email:new FormControl('',[Validators.required,Validators.email]),
     password:new FormControl('',[Validators.required,Validators.minLength(8)])
   })
-  constructor(private util:UtilityService,private auth:AuthService,private router:Router) { 
+  constructor(private auth:AuthService,private router:Router,private util:UtilityService){ 
   }
   get email(){
     return this.form.get('email')
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         return this.validator = {message:res.message}
       }
       localStorage.setItem('token',res.token)
-      this.util.isAdmin.next(true);
+      this.util.isAdmin.next(true)
       this.router.navigate(['/admin'])
       return 
     });

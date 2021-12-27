@@ -5,7 +5,7 @@ import { VehiclesComponent } from './components/vehicles/vehicles.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from './auth.guard';
-import { PostComponent } from './components/post/post.component';
+import { UpdatepostComponent } from './components/updatepost/updatepost.component';
 
 const routes: Routes = [
   {
@@ -15,6 +15,11 @@ const routes: Routes = [
 {
   path:'vehicle/:id',
   component:VehiclesComponent
+},
+{
+  path:'vehicle/edit/:id',
+  component:UpdatepostComponent,
+  canActivate:[AuthGuard]
 },
 {
   path:'admin',
