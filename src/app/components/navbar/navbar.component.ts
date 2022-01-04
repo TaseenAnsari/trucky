@@ -16,13 +16,17 @@ export class NavbarComponent implements OnInit{
   userEmail:string='user@info'
   navItems:any[] = [
   ]
+  contact:any[] = []
   @Input('matMenuTriggerFor') menu: MatMenuPanel<any> | undefined
-  constructor(private utility:UtilityService , private router:Router) { }
+  constructor(private utility:UtilityService , private router:Router,private http:HttpService) { }
 
   ngOnInit(): void {
     this.userEmail = String(localStorage.getItem('email'))
     this.utility.isAdmin.subscribe(res=> this.isAdmin = res)
     this.utility.payload.subscribe(res=> this.userEmail = res)
+    this.http.getDate('/api/feature/contact').subscribe( (res:any) => {
+      this.contact.push(res[0])
+    })
   }
 
   logout(){

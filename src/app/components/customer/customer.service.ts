@@ -8,6 +8,6 @@ import { HttpService } from 'src/app/http.service';
 export class CustomerService extends HttpService{
 
   constructor(http:HttpClient) {
-    super(http,'http://localhost:3000/api/customers')
+    super(http,'/api/customers')
    }
 }

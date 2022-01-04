@@ -1,18 +1,34 @@
 <header>
-    <div class="container row">
-        <div class="d-inline-block col  my-1" ngbDropdown #myDrop="ngbDropdown">
-            <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
-                (focus)="myDrop.open()">Catagory</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu>
-                <input type="button" ngbDropdownItem *ngFor="let item of catagory" (click)="changeMenu(item)"
-                    value="{{item | titlecase}}">
+    <div class="container">
+        <div class="row  my-1">
+            <div class="col" ngbDropdown #myDrop="ngbDropdown">
+                <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+                    (focus)="myDrop.open()">Category</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu>
+                    <input type="button" ngbDropdownItem *ngFor="let item of category" (click)="changeMenu(item)"
+                        value="{{item | titlecase}}">
+                </div>
+            </div>
+            <div class="col" ngbDropdown #myDrop2="ngbDropdown" *ngIf="isAdmin">
+                <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+                    (focus)="myDrop2.open()">Admin</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu id="admin">
+                    <input type="button" ngbDropdownItem value="Users" [routerLink]="['/admin/users']">
+                    <input type="button" ngbDropdownItem value="Post">
+                    <input type="button" ngbDropdownItem value="Add Feature"
+                        [routerLink]="['/admin/additional-feature']">
+                </div>
+            </div>
+            <div class="input-group mb-3 col ms-auto" id="search">
+                <span class="input-group-text" id="basic-addon1" (click)="search(search_veh)"><i
+                        class="bi bi-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search Vehicles..." aria-label="Search"
+                    aria-describedby="basic-addon1" (keydown.enter)="search(search_veh)" #search_veh>
             </div>
         </div>
-        <input class="form-control col-md  my-1" type="search" placeholder="Search Vehicles..." aria-label="Search"
-            (keyup)="search($event)">
     </div>
     <div class="carousel">
-        <div id="carouselExampleSlidesOnly" class="carousel">
+        <div id="carouselExampleSlidesOnly" class="carousel" *ngIf="!isAdmin">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img [src]="'./assets/slideShow/slide.jpg'" class="d-block w-100" alt="...">
@@ -20,4 +36,5 @@
             </div>
         </div>
     </div>
+
 </header>

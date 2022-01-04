@@ -16,6 +16,14 @@ export class SectionComponent implements OnInit {
   search:string = ''
   searchedResource:any;
   constructor(private http: HttpService, private router: Router, private util: UtilityService) {
+    util.search.subscribe(res=>{
+      if(res){
+        this.searching(res);
+      }
+      if(!res){
+        this.ngOnInit()
+      }
+    })
     util.refresh.subscribe(res => {
       if (res) {
         this.ngOnInit()
@@ -26,10 +34,18 @@ export class SectionComponent implements OnInit {
   
   ngOnInit(): void {
     this.util.changeCat.subscribe( res => this.cat = res)
-    this.http.getDate('http://localhost:3000/api/vehicles',{type:this.cat})
+    this.http.getDate('/api/vehicles',{type:this.cat})
       .subscribe((res: any) => {
-        console.log(res)
         this.resource = res
+        this.http.progress.next(false)
+      })
+  }
+  searching(value:string): void {
+    this.http.getDate('/api/vehicles',{search:value})
+      .subscribe((res: any) => {
+        this.resource = res
+        this.cat = "Found result: "+res.length
+        this.http.progress.next(false)
       })
   }
 
@@ -38,13 +54,17 @@ export class SectionComponent implements OnInit {
   }
   sort(value: string) {
     if (value === 'price') {
-      return this.http.getDate('http://localhost:3000/api/vehicles', { sort: 'price',type:this.cat })
-        .subscribe((res: any) => this.resource = res.reverse())
-    }
-    if (value === 'year') {
-      return this.http.getDate('http://localhost:3000/api/vehicles', { sort: 'year',type:this.cat })
+      return this.http.getDate('/api/vehicles', { sort: 'price',type:this.cat })
         .subscribe((res: any) => {
           this.resource = res.reverse()
+          this.http.progress.next(false)
+        })
+    }
+    if (value === 'year') {
+      return this.http.getDate('/api/vehicles', { sort: 'year',type:this.cat })
+        .subscribe((res: any) => {
+          this.resource = res.reverse()
+          this.http.progress.next(false)
         })
     }
     return

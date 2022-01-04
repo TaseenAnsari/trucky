@@ -3,3 +3,12 @@
     height: 200px;
 }
 
+#admin{
+    width: 300px;
+    height: auto;
+}
+
+#search{
+    max-width: 400px;
+    min-width: 230px;
+}

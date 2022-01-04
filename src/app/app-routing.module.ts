@@ -6,6 +6,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { UpdatepostComponent } from './components/updatepost/updatepost.component';
+import { UsersComponent } from './components/users/users.component';
+import { AdditionalComponent } from './components/additional/additional.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,16 @@ const routes: Routes = [
 {
   path:'admin/login',
   component:LoginComponent,
+},
+{
+  path:'admin/users',
+  component:UsersComponent,
+  canActivate:[AuthGuard]
+},
+{
+  path:'admin/additional-feature',
+  component:AdditionalComponent,
+  canActivate:[AuthGuard]
 }
 ];
 

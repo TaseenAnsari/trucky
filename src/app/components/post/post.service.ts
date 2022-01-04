@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/http.service';
 export class PostService  extends HttpService{
 
   constructor(http:HttpClient) {
-    super(http,'http://localhost:3000/api/vehicles')
+    super(http,'/api/vehicles')
    }
 }
 

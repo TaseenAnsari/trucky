@@ -22,9 +22,11 @@ export class VehiclesComponent implements OnInit {
     this.route.paramMap.subscribe(res => {
       this.id = res
     } )
-    this.http.getDate('http://localhost:3000/api/vehicles/'+this.id.params.id)
-    .subscribe((res:any)=> {this.resource = res
-    this.currentImage = res[0].photo[0]
+    this.http.getDate('/api/vehicles/'+this.id.params.id)
+    .subscribe((res:any)=> {
+      this.resource = res
+      this.currentImage = res[0].photo[0]
+      this.http.progress.next(false)
     })
   }
 
@@ -41,7 +43,7 @@ export class VehiclesComponent implements OnInit {
 
   removePost(id:string){
     if(!confirm('are you sure')) return
-    this.http.deleteDate('http://localhost:3000/api/vehicles/'+this.id.params.id)
+    this.http.deleteDate('/api/vehicles/'+this.id.params.id)
     .subscribe(res=> this.router.navigate(['/']))
   }
   updatePost(id:string){

@@ -1,4 +1,3 @@
-<app-header></app-header>
 <section class="m-3">
     <div class="container  bg-light" >
         <div class="my-2">
@@ -16,15 +15,15 @@
             <div class="col-md-3 my-3 d-flex justify-content-center" *ngFor="let res of resource;index as i">
                 <div class="card " style="width: 18rem;" (click)="showVehicle(resource[(resource.length-1)-i]._id)">
                     <div class="image">
-                        <img [src]="'http://localhost:3000/api/'+resource[(resource.length-1)-i].photo[0]" class="card-img-top" alt="..." id="img">
+                        <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+resource[(resource.length-1)-i]?.photo[0]" class="card-img-top" alt="..." id="img">
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">{{resource[(resource.length-1)-i].brand}} {{resource[(resource.length-1)-i].model}}</h3>
+                        <h3 class="card-title">{{resource[(resource.length-1)-i].brand | uppercase}} {{resource[(resource.length-1)-i].model}}</h3>
                         <p class="card-text">{{resource[(resource.length-1)-i].kmDriven | number}} Km - {{resource[(resource.length-1)-i].year}}</p>
                     </div>
                     <div class="card-body">
-                        <p class="card-text h5">{{resource[(resource.length-1)-i].price | currency:'INR'}}</p>
-                        <p class="card-text"><small class="text-muted">Lastest Update</small></p>
+                        <p class="card-text h5">{{resource[(resource.length-1)-i].price | currency:'INR':'symbol':'2.0'}}</p>
+                        <p class="card-text"><small class="text-muted">{{resource[(resource.length-1)].date | date:'mediumDate'}}</small></p>
                     </div>
                 </div>
             </div>

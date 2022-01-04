@@ -15,7 +15,14 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { PostComponent } from './components/post/post.component';
 import { UpdatepostComponent } from './components/updatepost/updatepost.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { UsersComponent } from './components/users/users.component';
+import {MatListModule} from '@angular/material/list';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { AdditionalComponent } from './components/additional/additional.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -30,6 +37,8 @@ import { FooterComponent } from './components/footer/footer.component';
     PostComponent,
     UpdatepostComponent,
     FooterComponent,
+    UsersComponent,
+    AdditionalComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +46,12 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,
+    BrowserAnimationsModule,  
+    MatBadgeModule,
+    MatProgressBarModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

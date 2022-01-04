@@ -22,9 +22,9 @@
         </div>
         <ul class="navbar-nav ms-auto" *ngIf="!isAdmin">
             <li class="nav-item">
-                <a class="btn btn-outline-light btn mx-2" *ngIf="!isAdmin" href="tel:+4733378901">
+                <a class="btn btn-outline-light btn mx-2" *ngIf="!isAdmin" href="tel:+91{{contact[0]?.phone}}">
                     <i class="bi bi-telephone-fill"></i> 
-                    <label>+91-999-999-9999</label>
+                    <label>+91-{{contact[0]?.phone}}</label>
                 </a>
             </li>
         </ul>

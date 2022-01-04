@@ -8,6 +8,6 @@ import { HttpService } from 'src/app/http.service';
 export class AuthService extends HttpService{
 
   constructor(http:HttpClient) {
-    super(http,'http://localhost:3000/api/auth')
+    super(http,'/api/auth')
    }
 }

@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PostService } from '../post/post.service';
 import { UtilityService } from '../../utility.service';
@@ -15,6 +13,7 @@ export class PostComponent implements OnInit {
   photos: any;
   fileuploaded: any[] = []
   filename: any[] = []
+  brands:any=[]
   constructor(config: NgbModalConfig,
     private modalService: NgbModal,
     private http: PostService,
@@ -31,15 +30,18 @@ export class PostComponent implements OnInit {
     kmDriven: new FormControl('',[Validators.required]),
     year: new FormControl('',[Validators.required,Validators.min(2001),Validators.max(2022)]),
     price: new FormControl('',Validators.required),
-    desc: new FormControl('',Validators.required),
+    desc: new FormControl(''),
     file: new FormControl(''),
 
   })
   ngOnInit(): void {
-
+    this.http.getDate('/api/feature/brand').subscribe( (res:any) => {
+    this.brands.splice(0,this.brands.length) 
+    res.map((value:any)=> this.brands.push(value))
+    })
   }
   onSubmit() {
-    return this.http.postDate(
+    return this.http.postDate('/api/vehicles',
       {
         type: this.form.get('type')?.value,
         brand: this.form.get('brand')?.value,
@@ -59,8 +61,9 @@ export class PostComponent implements OnInit {
   send(event: any) {
     this.http.upload(event.files).subscribe((res: any) => {
       for (let item of res) {
-        this.fileuploaded.push({ filename: item.filename, filesize: Math.round(Number(item.size) / 1024) + 'kb' })
-        this.filename.push(item.filename)
+        console.log(item)
+        this.fileuploaded.push({ key: item.key, filesize: Math.round(Number(item.size) / 1024) + 'kb' })
+        this.filename.push(item.key)
         this.form.get('file')?.reset()
       }
     })
@@ -72,9 +75,5 @@ export class PostComponent implements OnInit {
   remove(id: number) {
     this.fileuploaded.splice(id, 1)
     this.filename.splice(id)
-  }
-
-  type(){
-    console.log(this.form)
   }
 }

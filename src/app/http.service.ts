@@ -1,50 +1,56 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';;
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-
+  progress = new BehaviorSubject(false)
+  baseUrl = 'https://trucky.herokuapp.com'
   constructor(public http:HttpClient,@Inject('url') @Optional() public url:string) { }
 
   login(email:string,password:string){
-    return this.http.post(this.url,{email:email,password:password})
+    return this.http.post(this.baseUrl+this.url,{email:email,password:password})
   }
 
   verifyToken(){
-    return this.http.get('http://localhost:3000/api/auth/verify-token',{ headers:{
+    return this.http.get(this.baseUrl+'/api/auth/verify-token',{ headers:{
       'x-auth-token' : String(localStorage.getItem('token'))
     }})
   }
 
 
   getDate(url:string,querry?:any){
-    return this.http.get(url,{params:querry})
+    this.progress.next(true)
+    return this.http.get(this.baseUrl+url,{params:querry})
   }
 
   upload(upload:any){
-    console.log(upload)
     let formdata= new FormData();
     for(let mul of upload){
       formdata.append('files',mul)
 
     }
-    return this.http.post('http://localhost:3000/api/vehicles/upload',formdata)
+    return this.http.post(this.baseUrl+'/api/vehicles/upload',formdata)
   }
 
-  postDate(resource:any){
-    return this.http.post(this.url,resource)
+  postDate(url:string,resource:any){
+    return this.http.post(this.baseUrl+url,resource,
+      {
+        headers:{
+          "x-auth-token":String(localStorage.getItem('token'))
+      }})
   }
 
   deleteDate(url:string){
-    return this.http.delete(url,{
+    return this.http.delete(this.baseUrl+url,{
       headers:{
         "x-auth-token":String(localStorage.getItem('token'))
     }})
   }
   updateDate(url:string,resource:any){
-    return this.http.put(url,resource,{
+    return this.http.put(this.baseUrl+url,resource,{
       headers:{
         "x-auth-token":String(localStorage.getItem('token'))
     }

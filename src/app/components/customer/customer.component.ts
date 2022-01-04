@@ -28,7 +28,7 @@ export class CustomerComponent implements OnInit {
     
   }
   onSubmit(){
-    this.http.postDate({name:this.form.get('name')?.value,phone:this.form.get('phone')?.value})
+    this.http.postDate('/api/customers',{name:this.form.get('name')?.value,phone:this.form.get('phone')?.value})
     .subscribe(res => localStorage.setItem('user',this.form.get('name')?.value))
   }
 }

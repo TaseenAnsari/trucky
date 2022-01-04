@@ -1,23 +1,16 @@
-/* .pagination{
-    display: flex
-} */
-/* #slider {
-    width: auto;
-    height: 250px;
-    position: relative;
-    display: inline-block;
-      }
-  
-  #slider img {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: inline-block;
-  } */
+
   #desc{
-    height: 100px;
+    width: auto;
+    height: auto;
     border-top: solid 1px lightgrey;
     padding: 5px;
+  }
+
+  #desc2{
+    height: auto;
+    border-top: solid 1px lightgrey;
+    padding: 5px;
+    
   }
 
   .image{

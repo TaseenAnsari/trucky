@@ -15,47 +15,49 @@
                 <option value="bike">Bike</option>
             </select>
             <div>
-                <small class="text-danger" *ngIf="form?.get('type')?.errors?.['required'] && form.touched">Catogory Required</small>
+                <small class="text-danger" *ngIf="form?.get('type')?.errors?.['required'] && form?.get('type')?.touched">Catogory Required</small>
             </div>
             <label class="form-label">Select Brand</label>
-            <select class="form-select" aria-label="Default select example" formControlName="brand">
-                <option selected>Select Brand</option>
-                <option value="Tata">Tata</option>
-                <option value="Ashok">Ahsok</option>
-                <option value="Other">other</option>
+            <select class="form-select" aria-label="Default select example" formControlName="brand" >   
+                <option *ngFor="let item of brands" value="{{item.brand}}">{{item.brand | uppercase}}</option>
             </select>
             <div>
-                <small class="text-danger" *ngIf="form?.get('brand')?.errors?.['required'] && form.touched">Brand Required</small>
+                <small class="text-danger" *ngIf="form?.get('brand')?.errors?.['required'] && form?.get('brand')?.touched">Brand Required</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Model</label>
                 <input type="text" class="form-control" formControlName="model">
-                <small class="text-danger" *ngIf="form?.get('model')?.errors?.['required'] && form.touched">Model Required</small>
+                <small class="text-danger" *ngIf="form?.get('model')?.errors?.['required'] && form?.get('model')?.touched">Model Required</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Year</label>
                 <input type="text" class="form-control" formControlName="year">
-                <small class="text-danger" *ngIf="form?.get('year')?.errors?.['required'] && form.touched">Year Required</small>
-                <small class="text-danger" *ngIf="form?.get('year')?.errors?.['max'] || form?.get('year')?.errors?.['min'] && form.touched">Year must between 2000 to 2022</small>
+                <small class="text-danger" *ngIf="form?.get('year')?.errors?.['required'] && form?.get('year')?.touched">Year Required</small>
+                <small class="text-danger" *ngIf="form?.get('year')?.errors?.['max'] || form?.get('year')?.errors?.['min'] && form?.get('year')?.touched">Year must between 2000 to 2022</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Km driven</label>
                 <input type="text" class="form-control" formControlName="kmDriven">
+                <small class="text-danger" *ngIf="form?.get('kmDriven')?.errors?.['required'] && form?.get('kmDriven')?.touched">KM Required</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Price</label>
-                <input type="text" class="form-control" formControlName="price" (keydown)="type()">
+                <input type="text" class="form-control" formControlName="price">
+                <small class="text-danger" *ngIf="form?.get('price')?.errors?.['required'] && form?.get('price')?.touched">Price Required</small>
             </div>
             <div class="mb-3">
+                <label class="form-label">Select Photo</label>
                 <div class="container">
-                    <input type="file" class="form-control"  #files multiple formControlName="file">
+                    <input type="file" class="form-control"  #files multiple formControlName="file" (change)="send(files)" [hidden]="true">
                     <div class="row mx-2">
                         <div class="p-1 col-1" id="image"  *ngFor="let item of fileuploaded;index as i">
-                            <img [src]="'http://localhost:3000/api/'+item?.filename" alt="">
-                            <button class="btn " (click)="remove(i)"><i class="bi bi-slash-circle-fill text-danger"></i>></button>
+                            <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+item?.key" alt="">
+                            <button class="btn " (click)="remove(i)"><i class="bi bi-slash-circle-fill text-danger"></i></button>
+                        </div>
+                        <div class="p-1 col-1" id="image">
+                            <img [src]="'https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_960_720.png'" alt="" (click)="files.click()" id="selectimg">
                         </div>
                     </div>
-                    <button class="btn btn-success m-1" type="button" (click)="send(files)" >upload</button>
                 </div>
             </div>
             <div class="mb-3">
