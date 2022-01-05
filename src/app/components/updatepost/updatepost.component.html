@@ -48,7 +48,7 @@
                     <input type="file" class="form-control"  #files multiple formControlName="file" (change)="send(files)" [hidden]="true">
                     <div class="row mx-2">
                         <div class="p-1 col-1" id="image"  *ngFor="let item of filename;index as i">
-                            <img [src]="'https://trucky.herokuapp.com/api/'+item" alt="">
+                            <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+item" alt="">
                             <button class="btn " (click)="remove(i)"><i class="bi bi-slash-circle-fill text-danger"></i></button>
                         </div>
                         <div class="p-1 col-1" id="image">

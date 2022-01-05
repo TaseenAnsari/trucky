@@ -1,16 +1,16 @@
 <header>
-    <div class="container">
-        <div class="row  my-1">
-            <div class="col" ngbDropdown #myDrop="ngbDropdown">
-                <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+    <div class="container my-2">
+        <div class="d-flex">
+            <div class="col-sm" ngbDropdown #myDrop="ngbDropdown">
+                <button class="btn btn-btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor
                     (focus)="myDrop.open()">Category</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu>
                     <input type="button" ngbDropdownItem *ngFor="let item of category" (click)="changeMenu(item)"
                         value="{{item | titlecase}}">
                 </div>
             </div>
-            <div class="col" ngbDropdown #myDrop2="ngbDropdown" *ngIf="isAdmin">
-                <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+            <div class="" ngbDropdown #myDrop2="ngbDropdown" *ngIf="isAdmin">
+                <button class="btn btn-btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor
                     (focus)="myDrop2.open()">Admin</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu id="admin">
                     <input type="button" ngbDropdownItem value="Users" [routerLink]="['/admin/users']">
@@ -19,11 +19,11 @@
                         [routerLink]="['/admin/additional-feature']">
                 </div>
             </div>
-            <div class="input-group mb-3 col ms-auto" id="search">
+            <div class="input-group ms-auto"  id="search">
+                <input type="text" class="form-control" placeholder="Search Vehicles..." aria-label="Search"
+                aria-describedby="basic-addon1" (keydown.enter)="search(search_veh)" #search_veh>
                 <span class="input-group-text" id="basic-addon1" (click)="search(search_veh)"><i
                         class="bi bi-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search Vehicles..." aria-label="Search"
-                    aria-describedby="basic-addon1" (keydown.enter)="search(search_veh)" #search_veh>
             </div>
         </div>
     </div>
@@ -36,5 +36,4 @@
             </div>
         </div>
     </div>
-
 </header>

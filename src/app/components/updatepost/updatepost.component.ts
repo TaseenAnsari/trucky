@@ -48,6 +48,7 @@ export class UpdatepostComponent implements OnInit {
         this.form.get('kmDriven')?.setValue(res[0].kmDriven)
         this.form.get('price')?.setValue(res[0].price)
         this.form.get('desc')?.setValue(res[0].description)
+        this.http.progress.next(false)
       })
   }
 
@@ -71,8 +72,9 @@ export class UpdatepostComponent implements OnInit {
   send(event: any) {
     this.http.upload(event.files).subscribe((res: any) => {
       for (let item of res) {
-        this.fileuploaded.push(item.filename)
-        this.filename.push(item.filename)
+        console.log(item)
+        this.fileuploaded.push({ key: item.key, filesize: Math.round(Number(item.size) / 1024) + 'kb' })
+        this.filename.push(item.key)
         this.form.get('file')?.reset()
       }
     })

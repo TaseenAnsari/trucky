@@ -38,6 +38,7 @@ export class PostComponent implements OnInit {
     this.http.getDate('/api/feature/brand').subscribe( (res:any) => {
     this.brands.splice(0,this.brands.length) 
     res.map((value:any)=> this.brands.push(value))
+    this.http.progress.next(false)
     })
   }
   onSubmit() {

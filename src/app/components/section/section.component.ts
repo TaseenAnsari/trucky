@@ -9,7 +9,7 @@ import { UtilityService } from '../../utility.service';
   styleUrls: ['./section.component.css']
 })
 export class SectionComponent implements OnInit {
-  resource: any;
+  resource: any[] = []
   currentImage: string = ''
   sortResource: any[] = []
   cat: string = 'Comercial Vehicle'

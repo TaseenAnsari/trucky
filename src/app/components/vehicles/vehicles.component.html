@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="resource?.length>0">
         <div class="col-lg-9" id="post">
             <div class="container-fluid p-1 d-sm-flex">
                 <h2 class="text-muted">{{resource?.[0].brand | uppercase}} {{resource?.[0].model}}</h2>
@@ -17,7 +17,7 @@
             </div>
             <div class="card">
                 <div class="image">
-                    <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+currentImage" class="card-img-top col" alt="...">
+                    <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+currentImage" class="card-img-top col" alt="Loading..." loading="lazy">
                 </div>
                 <div class="card-body row">
                     <button class="btn btn-outline-secondary col" (click)="changeBack()">

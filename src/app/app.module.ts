@@ -23,7 +23,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AdditionalComponent } from './components/additional/additional.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoaderComponent } from './components/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     FooterComponent,
     UsersComponent,
     AdditionalComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatListModule,
     MatSlideToggleModule,
     MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
