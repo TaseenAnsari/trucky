@@ -15,7 +15,7 @@
             <div class="col-md-3 my-3 d-flex justify-content-center" *ngFor="let res of resource;index as i">
                 <div class="card " style="width: 18rem;" (click)="showVehicle(resource[(resource.length-1)-i]._id)">
                     <div class="image">
-                        <img loading="lazy" [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+resource[(resource.length-1)-i]?.photo[0]" class="card-img-top" alt="..." id="img">
+                        <img loading="lazy" [src]="'https://truckystruck.s3.ap-south-1.amazonaws.com/'+resource[(resource.length-1)-i]?.photo[0]" class="card-img-top" alt="..." id="img">
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">{{resource[(resource.length-1)-i].brand | uppercase}} {{resource[(resource.length-1)-i].model}}</h3>

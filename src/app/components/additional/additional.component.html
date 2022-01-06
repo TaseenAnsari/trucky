@@ -38,7 +38,7 @@
                             <app-loader class="loader"></app-loader>
                         </div>
                         <div class="p-1 col-1" id="image" *ngIf="fileuploaded.length>0">
-                            <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+fileuploaded?.[0]?.banner" alt="">
+                            <img [src]="'https://truckystruck.s3.ap-south-1.amazonaws.com/'+fileuploaded?.[0]?.banner" alt="">
                         </div>
                         <div class="p-1 col-1" id="image">
                             <img [src]="'./assets/slideShow/addimg.png'" alt="" (click)="files.click()" id="selectimg">

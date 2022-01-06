@@ -51,7 +51,7 @@
                     <input type="file" class="form-control"  #files multiple formControlName="file" (change)="send(files)" [hidden]="true">
                     <div class="row mx-2">
                         <div class="p-1 col-1" id="image"  *ngFor="let item of fileuploaded;index as i">
-                            <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+item?.key" alt="">
+                            <img [src]="'https://truckystruck.s3.ap-south-1.amazonaws.com/'+item?.key" alt="">
                             <button class="btn " (click)="remove(i)"><i class="bi bi-slash-circle-fill text-danger"></i></button>
                         </div>
                         <div class="p-3 col-2 mt-3" *ngIf="loader">
