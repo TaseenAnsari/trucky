@@ -15,12 +15,16 @@ export class HeaderComponent implements OnInit {
     'car',
     'bike'
   ]
+  banner:string = ''
  
   constructor(private util:UtilityService,private router:Router,private http:HttpService) {
     util.isAdmin.subscribe(res => this.isAdmin = res)
    }
 
   ngOnInit(): void {
+    this.http.getDate('/api/feature/banner').subscribe((res:any)=>{
+        this.banner = res[0].banner
+    })
     
   }
   changeMenu(event:any){

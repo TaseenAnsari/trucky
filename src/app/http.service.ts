@@ -23,16 +23,19 @@ export class HttpService {
 
   getDate(url:string,querry?:any){
     this.progress.next(true)
-    return this.http.get(this.baseUrl+url,{params:querry})
+    return this.http.get(this.baseUrl+url,{params:querry,headers:{
+      'x-auth-token' : String(localStorage.getItem('token'))
+    }})
   }
 
-  upload(upload:any){
+  upload(path:string,upload:any,id?:string){
     let formdata= new FormData();
     for(let mul of upload){
       formdata.append('files',mul)
 
     }
-    return this.http.post(this.baseUrl+'/api/vehicles/upload',formdata)
+    if(!id) id = ''
+    return this.http.post(this.baseUrl+path+id,formdata)
   }
 
   postDate(url:string,resource:any){

@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
   fileuploaded: any[] = []
   filename: any[] = []
   brands:any=[]
+  loader:boolean = false
   constructor(config: NgbModalConfig,
     private modalService: NgbModal,
     private http: PostService,
@@ -60,12 +61,13 @@ export class PostComponent implements OnInit {
       })
   }
   send(event: any) {
-    this.http.upload(event.files).subscribe((res: any) => {
+    this.loader = true
+    this.http.upload('/api/vehicles/upload',event.files).subscribe((res: any) => {
       for (let item of res) {
-        console.log(item)
         this.fileuploaded.push({ key: item.key, filesize: Math.round(Number(item.size) / 1024) + 'kb' })
         this.filename.push(item.key)
         this.form.get('file')?.reset()
+        this.loader = false
       }
     })
 

@@ -1,22 +1,24 @@
 <header>
     <div class="container my-2">
         <div class="d-flex">
-            <div class="col-sm" ngbDropdown #myDrop="ngbDropdown">
-                <button class="btn btn-btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor
-                    (focus)="myDrop.open()">Category</button>
-                <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu>
-                    <input type="button" ngbDropdownItem *ngFor="let item of category" (click)="changeMenu(item)"
-                        value="{{item | titlecase}}">
+            <div class="col-sm d-flex">
+                <div class="" ngbDropdown #myDrop="ngbDropdown">
+                    <button class="btn btn-btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+                        (focus)="myDrop.open()">Category</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu>
+                        <input type="button" ngbDropdownItem *ngFor="let item of category" (click)="changeMenu(item)"
+                            value="{{item | titlecase}}">
+                    </div>
                 </div>
-            </div>
-            <div class="" ngbDropdown #myDrop2="ngbDropdown" *ngIf="isAdmin">
-                <button class="btn btn-btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor
-                    (focus)="myDrop2.open()">Admin</button>
-                <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu id="admin">
-                    <input type="button" ngbDropdownItem value="Users" [routerLink]="['/admin/users']">
-                    <input type="button" ngbDropdownItem value="Post">
-                    <input type="button" ngbDropdownItem value="Add Feature"
-                        [routerLink]="['/admin/additional-feature']">
+                <div class="" ngbDropdown #myDrop2="ngbDropdown" *ngIf="isAdmin">
+                    <button class="btn btn-btn-primary mr-2" id="dropdownManual" ngbDropdownAnchor
+                        (focus)="myDrop2.open()">Admin</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownManual" #menu id="admin">
+                        <input type="button" ngbDropdownItem value="Users" [routerLink]="['/admin/users']" disabled>
+                        <input type="button" ngbDropdownItem value="Post" disabled>
+                        <input type="button" ngbDropdownItem value="Add Feature"
+                            [routerLink]="['/admin/additional-feature']">
+                    </div>
                 </div>
             </div>
             <div class="input-group ms-auto"  id="search">
@@ -27,11 +29,12 @@
             </div>
         </div>
     </div>
+    
     <div class="carousel">
         <div id="carouselExampleSlidesOnly" class="carousel" *ngIf="!isAdmin">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img [src]="'./assets/slideShow/slide.jpg'" class="d-block w-100" alt="...">
+                    <img [src]="'https://truckytruck.s3.us-west-1.amazonaws.com/'+banner" class="d-block w-100" alt="...">
                 </div>
             </div>
         </div>

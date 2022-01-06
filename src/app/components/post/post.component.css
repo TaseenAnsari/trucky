@@ -25,3 +25,7 @@
 #selectimg:hover{
     border:solid 2px blue;
 }
+
+#loader{
+    width: 20px;
+}

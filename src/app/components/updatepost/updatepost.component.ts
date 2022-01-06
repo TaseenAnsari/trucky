@@ -16,6 +16,7 @@ export class UpdatepostComponent implements OnInit {
   currentImage: string = ""
   brands:any=[]
   validateMessage = ""
+  loader:boolean = false
   constructor(private http: HttpService, private route: ActivatedRoute, private router: Router,) { }
 
   form = new FormGroup({
@@ -70,12 +71,14 @@ export class UpdatepostComponent implements OnInit {
   }
 
   send(event: any) {
-    this.http.upload(event.files).subscribe((res: any) => {
+    this.loader = true
+    this.http.upload('/api/vehicles/upload',event.files).subscribe((res: any) => {
       for (let item of res) {
         console.log(item)
         this.fileuploaded.push({ key: item.key, filesize: Math.round(Number(item.size) / 1024) + 'kb' })
         this.filename.push(item.key)
         this.form.get('file')?.reset()
+        this.loader = false
       }
     })
   }

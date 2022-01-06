@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerService } from './customer.service';
 
@@ -16,8 +16,8 @@ export class CustomerComponent implements OnInit {
     config.keyboard = false;
   }
   form = new FormGroup({
-    name:new FormControl(''),
-    phone:new FormControl('')
+    name:new FormControl('',Validators.required),
+    phone:new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)])
   })
 
   ngOnInit(): void {
@@ -28,8 +28,11 @@ export class CustomerComponent implements OnInit {
     
   }
   onSubmit(){
+    if(!this.form.valid) return 
+    console.log(Number(this.form.get('phone')?.value))
+    if(!Number(this.form.get('phone')?.value)) return 
     this.http.postDate('/api/customers',{name:this.form.get('name')?.value,phone:this.form.get('phone')?.value})
-    .subscribe(res => localStorage.setItem('user',this.form.get('name')?.value))
+    .subscribe((res:any) => localStorage.setItem('user',res.name))
   }
 }
 

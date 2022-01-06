@@ -25,6 +25,9 @@ import { AdditionalComponent } from './components/additional/additional.componen
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
+import { NotifyComponent } from './components/notify/notify.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +44,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     UsersComponent,
     AdditionalComponent,
     LoaderComponent,
+    NotifyComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     MatListModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
